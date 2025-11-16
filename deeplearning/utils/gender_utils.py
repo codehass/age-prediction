@@ -27,6 +27,13 @@ def split_utkface_by_gender(base_dir: Path):
     gender_map = {"1": FEMALE_DATA_PATH, "0": MALE_DATA_PATH}
 
     for image_file in UTK_FACE_DATA_PATH.iterdir():
+        images_ext = ["png", "jpg", "peng"]
+        file_extension = image_file.name.split(".")[-1]
+
+        if file_extension not in images_ext:
+            print(f"Skipping mal file type: {image_file.name}")
+            continue
+
         if not image_file.is_file():
             continue
 
